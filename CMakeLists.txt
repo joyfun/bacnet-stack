@@ -12,7 +12,7 @@ project(
 option(
   BACNET_STACK_BUILD_APPS
   "build apps"
-  ON)
+  OFF)
 
 option(
   BAC_ROUTING
@@ -43,6 +43,11 @@ option(
   BACDL_ARCNET
   "compile with arcnet support"
   OFF)
+
+option(
+  BACNET_STACK_STATIC_DEFINE
+  "compile with static lib"
+  ON)
 
 option(
   BACDL_BIP
@@ -81,7 +86,7 @@ message(STATUS "BACNET: BACDL_NONE \"${BACDL_NONE}\"")
 
 find_package(Threads)
 
-add_library(${PROJECT_NAME}
+add_library(${PROJECT_NAME} SHARED
     src/bacnet/abort.c
     src/bacnet/abort.h
     src/bacnet/access_rule.c
@@ -428,12 +433,12 @@ target_include_directories(
   ${PROJECT_NAME}
   PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/src/>
          $<INSTALL_INTERFACE:include/bacnet/>)
-if(BUILD_SHARED_LIBS)
+#if(BUILD_SHARED_LIBS)
   set_target_properties(
     ${PROJECT_NAME}
     PROPERTIES
       C_VISIBILITY_PRESET hidden)
-endif()
+#endif()
 target_compile_definitions(
   ${PROJECT_NAME}
   PUBLIC
