@@ -683,8 +683,7 @@ bool Analog_Value_Write_Property(BACNET_WRITE_PROPERTY_DATA *wp_data)
     if (wp_data == NULL) {
         return false;
     }
-    if ((wp_data->application_data == NULL) ||
-        (wp_data->application_data_len == 0)) {
+    if (wp_data->application_data_len == 0) {
         return false;
     }
 
@@ -1427,7 +1426,7 @@ int Analog_Value_Alarm_Summary(
 }
 #endif /* defined(INTRINSIC_REPORTING) */
 
-#ifdef TEST
+#ifdef BAC_TEST
 #include <assert.h>
 #include <string.h>
 #include "ctest.h"
@@ -1492,4 +1491,4 @@ int main(void)
     return 0;
 }
 #endif /* TEST_ANALOG_VALUE */
-#endif /* TEST */
+#endif /* BAC_TEST */

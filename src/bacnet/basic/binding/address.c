@@ -284,7 +284,7 @@ void address_mac_init(BACNET_MAC_ADDRESS *mac, uint8_t *adr, uint8_t len)
  *
  * @return true if the address was parsed
  */
-bool address_mac_from_ascii(BACNET_MAC_ADDRESS *mac, char *arg)
+bool address_mac_from_ascii(BACNET_MAC_ADDRESS *mac, const char *arg)
 {
     unsigned a[6] = { 0 }, p = 0;
     uint16_t port = 0;
@@ -1139,7 +1139,7 @@ void address_cache_timer(uint16_t uSeconds)
     }
 }
 
-#ifdef TEST
+#ifdef BAC_TEST
 #include <assert.h>
 #include <string.h>
 #include "ctest.h"
@@ -1312,4 +1312,4 @@ int main(void)
     return 0;
 }
 #endif /* TEST_ADDRESS */
-#endif /* TEST */
+#endif /* BAC_TEST */
